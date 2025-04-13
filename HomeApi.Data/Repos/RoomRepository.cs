@@ -27,4 +27,9 @@ public class RoomRepository: IRoomRepository
             
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Room[]> GetAllRooms()
+    {
+        return await _context.Rooms.ToArrayAsync(); 
+    }
 }

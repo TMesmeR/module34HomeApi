@@ -96,18 +96,12 @@ public class DeviceController: ControllerBase
     // TODO: Задание: напишите запрос на удаление устройства
     [HttpDelete]
     [Route("{id}")]
-    public async Task<IActionResult> DeleteDevice(
-        [FromRoute] Guid id,
-        [FromBody] DeleteDeviceRequest request)
+    public async Task<IActionResult> DeleteDevice([FromRoute] Guid id)
     {
-        var room = await _rooms.GetRoomByName(request.Name);
-        if(room == null)
-            return StatusCode(400, $"Ошибка: Комната {request.Room} не подключена. Сначала подключите комнату!");
-        var device = await _devices.GetDeviceByID(id);
-        if (device != null)
-            return StatusCode(400, $"Ошибка: Устройство с идентификатором {id} не существует.");
-        
-        
-        return Ok();
+       var device = await _devices.GetDeviceByID(id);
+       if (device == null)
+           return StatusCode(400, $"Устройство с ID {id} не найдено");
+       await _devices.DeleteDevice(device);
+       return StatusCode(200, $"Устройство {device.Name} удалено!");
     }
 }

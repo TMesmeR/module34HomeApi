@@ -37,4 +37,15 @@ public class RoomsController:ControllerBase
             
         return StatusCode(409, $"Ошибка: Комната {request.Name} уже существует.");
     }
+    
+    //TODO: Задание - добавить метод на получение всех существующих комнат
+
+    [HttpGet]
+    [Route("")]
+    public async Task<IActionResult> GetAllDevices()
+    {
+        var rooms = await _repository.GetAllRooms();
+        
+        return StatusCode(200, rooms);
+    }
 }
