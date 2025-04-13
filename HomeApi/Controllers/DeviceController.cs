@@ -107,6 +107,7 @@ public class DeviceController: ControllerBase
         if (device != null)
             return StatusCode(400, $"Ошибка: Устройство с идентификатором {id} не существует.");
         
+        
         return Ok();
     }
 }
