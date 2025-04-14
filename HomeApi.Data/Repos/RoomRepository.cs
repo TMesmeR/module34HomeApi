@@ -32,4 +32,16 @@ public class RoomRepository: IRoomRepository
     {
         return await _context.Rooms.ToArrayAsync(); 
     }
+    /// <summary>
+    /// Обновление комнаты
+    /// </summary>
+    /// <param name="room"></param>
+    /// <returns></returns>
+    public Task UpdateRoom(Room room)
+    {
+     var entry = _context.Entry(room);   
+     if (entry.State == EntityState.Detached)
+         _context.Rooms.Update(room);
+     return _context.SaveChangesAsync();
+    }
 }

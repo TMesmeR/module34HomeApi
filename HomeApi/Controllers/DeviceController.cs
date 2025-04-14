@@ -93,7 +93,11 @@ public class DeviceController: ControllerBase
         return StatusCode(200, $"Устройство обновлено! Имя - {device.Name}, Серийный номер - {device.SerialNumber},  Комната подключения - {device.Room.Name}");
     }
     
-    // TODO: Задание: напишите запрос на удаление устройства
+    /// <summary>
+    /// Удаление устройства по GUID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete]
     [Route("{id}")]
     public async Task<IActionResult> DeleteDevice([FromRoute] Guid id)
