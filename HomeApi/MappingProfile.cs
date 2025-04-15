@@ -31,5 +31,9 @@ public class MappingProfile : Profile
           
           // Маппинг устройства для отображения
           CreateMap<Device, DeviceView>();
+          //Маппинг для редактирования комнаты
+          CreateMap<EditRoomRequest, Room>()
+               .ForMember(r => r.Name,opt=>
+                    opt.MapFrom((src => src.NewName)));
      }
 }

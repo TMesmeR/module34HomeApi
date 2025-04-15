@@ -71,17 +71,7 @@ public class RoomsController:ControllerBase
                 return StatusCode(409, $"Комната {request.NewName} уже существует!");
         }
         
-        if (request.NewName != null)
-            room.Name = request.NewName;
-
-        if (request.Area.HasValue)
-            room.Area = request.Area.Value;
-
-        if (request.GasConnected.HasValue)
-            room.GasConnected = request.GasConnected.Value;
-
-        if (request.Voltage.HasValue)
-            room.Voltage = request.Voltage.Value;
+       _mapper.Map(request, room);
 
         await _repository.UpdateRoom(room);
         

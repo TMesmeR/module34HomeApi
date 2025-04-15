@@ -11,6 +11,8 @@ public class EditRoomRequestValidator : AbstractValidator<EditRoomRequest>
         RuleFor(x => x.NewName).NotEmpty();
         RuleFor(x => x.Area).NotEmpty();
         RuleFor(x => x.GasConnected).NotEmpty().WithMessage("Please choose a valid GasConnected");
-        RuleFor(x => x.Voltage).NotEmpty().WithMessage("Please choose a valid ValidVoltage");
+        RuleFor(x => x.Voltage)
+            .NotEmpty().WithMessage("Please choose a valid ValidVoltage")
+            .InclusiveBetween(120,220).WithMessage("Please choose a valid ValidVoltage(120-220)");
     }
 }

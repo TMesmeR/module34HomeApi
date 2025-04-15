@@ -27,7 +27,8 @@ builder.Services.AddDbContextPool<HomeApiContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Регистрируем валидаторы FluentValidation
-builder.Services.AddValidatorsFromAssemblyContaining<AddRoomRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<AddRoomRequestValidator>()
+    .AddFluentValidationAutoValidation();
 
 // Настраиваем конфигурационные модели
 builder.Services.Configure<HomeOptions>(builder.Configuration);
